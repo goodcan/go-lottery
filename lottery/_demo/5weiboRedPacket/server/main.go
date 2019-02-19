@@ -25,11 +25,6 @@ import (
 // 使用 *sync.Map 对应的使用方法也会改变
 var packageList = new(sync.Map)
 
-type task struct {
-	id       uint32
-	callback chan uint
-}
-
 type lotteryController struct {
 	Ctx iris.Context
 }

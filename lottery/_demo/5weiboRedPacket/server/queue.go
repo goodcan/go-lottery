@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+type task struct {
+	id       uint32
+	callback chan uint
+}
+
 // 单任务
 //var chTasks = make(chan task)
 
