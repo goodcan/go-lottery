@@ -11,12 +11,12 @@ package server
 
 import (
 	"fmt"
+	"github.com/kataras/iris/mvc"
 	"math/rand"
 	"sync"
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/mvc"
 )
 
 // 红包列表
@@ -32,23 +32,6 @@ type task struct {
 
 type lotteryController struct {
 	Ctx iris.Context
-}
-
-func NewApp() *iris.Application {
-	app := iris.Default()
-	mvc.New(app.Party("/")).Handle(&lotteryController{})
-
-	for i := 0; i < taskNum; i++ {
-		chTaskList[i] = make(chan task)
-		go fetchPackageListMoney(chTaskList[i])
-	}
-
-	return app
-}
-
-func Run() {
-	app := NewApp()
-	app.Run(iris.Addr(":8080"))
 }
 
 // 返回全部红包地址
@@ -224,4 +207,21 @@ func (c *lotteryController) GetGet() string {
 		}
 
 	*/
+}
+
+func NewApp() *iris.Application {
+	app := iris.Default()
+	mvc.New(app.Party("/")).Handle(&lotteryController{})
+
+	for i := 0; i < taskNum; i++ {
+		chTaskList[i] = make(chan task)
+		go fetchPackageListMoney(chTaskList[i])
+	}
+
+	return app
+}
+
+func Run() {
+	app := NewApp()
+	app.Run(iris.Addr(":8080"))
 }
