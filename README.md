@@ -5,5 +5,6 @@
 - [微信摇一摇](./lottery/_demo/3wechatShake)
 - [支付宝集福卡](./lottery/_demo/4alipayFu)
 - [微博抢红包](./lottery/_demo/5weiboRedPacket)
+- [大转盘](./lottery/_demo/6wheel)
 
 未完待续。。。
