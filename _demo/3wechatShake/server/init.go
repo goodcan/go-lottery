@@ -41,7 +41,7 @@ var giftList [5]*gift
 
 // 初始化日志
 func initLog() {
-	f, _ := os.Create("./lottery/_demo/3wechatShake/log/lottery_demo.log")
+	f, _ := os.Create("./_demo/3wechatShake/log/lottery_demo.log")
 	logger = log.New(f, "", log.Ldate|log.Lmicroseconds)
 }
 
