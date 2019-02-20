@@ -12,7 +12,7 @@
 - [微博抢红包](./_demo/5weiboRedPacket)
 - [大转盘](./_demo/6wheel)
 
-### 数据设计
+### 数据设计 - MySQL
 #### 奖品表 - gift
 | 字段 | 属性 | 说明 |
 | --- | --- | --- |
@@ -74,7 +74,7 @@
 | sys_udpated | int | 更新时间 |
 | sys_ip | varchar(50) | 用户抽奖的 IP |
 
-#### IP 黑名单 - black_ip
+#### IP 黑名单表 - black_ip
 | 字段 | 属性 | 说明 |
 | --- | --- | --- |
 | id | int,pk,auto_increment | 主键 |
