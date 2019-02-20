@@ -11,12 +11,12 @@ package server
 
 import (
 	"fmt"
-	"github.com/kataras/iris/mvc"
 	"math/rand"
 	"sync"
 	"time"
 
 	"github.com/kataras/iris"
+	"github.com/kataras/iris/mvc"
 )
 
 // 红包列表
