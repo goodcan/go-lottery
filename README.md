@@ -116,7 +116,7 @@
 |-- [conf](./conf) - 配置相关  
 |-- [cron](./cron) - 定时任务  
 |-- [dao](./dao) - 数据库相关操作  
-|-- [services](./services) - 服务类相关  
+|-- [services](./services) - 数据服务类相关  
 |-- [dataSource](./dataSource) - 数据源  
 |-- [thrift](./thrift) - RPC thrift 相关的  
 |-- [weh](./web) - 网站相关  
