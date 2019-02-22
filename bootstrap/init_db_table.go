@@ -1,4 +1,4 @@
-package bootstrap
+package main
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	engire, _ := xorm.NewEngine(
+	engine, _ := xorm.NewEngine(
 		"mysql",
 		"root:peipeiyun071@tcp(127.0.0.1:3306)/go-lottery",
 	)
@@ -25,10 +25,10 @@ func main() {
 	}
 
 	for _, table := range tables {
-		if exist, _ := engire.IsTableExist(table); exist {
-			_ = engire.DropTables(table)
+		if exist, _ := engine.IsTableExist(table); exist {
+			_ = engine.DropTables(table)
 		}
-		err := engire.CreateTables()
+		err := engine.CreateTables()
 		if err != nil {
 			fmt.Print(err)
 		}
