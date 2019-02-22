@@ -26,14 +26,14 @@
 | display_order | int | 位置序号：小的排在前面 |
 | gtype | int | 奖品类型：0 虚拟币；1 虚拟券；2 实物-小奖；3 实物-大奖 |
 | gdata | varchar(255) | 扩展数据：如虚拟币数量 |
-| time_begin | int | 开始时间 |
-| time_end | int | 结束时间 |
+| time_begin | datetime | 开始时间 |
+| time_end | datetime | 结束时间 |
 | prize_data | mediumtext | 发奖计划：[[时间 1，数量 1]，[时间 2，数量 2]] |
-| prize_begin | int | 发奖周期的开始 |
-| prize_end | int | 发奖周期的结束 |
+| prize_begin | datetime | 发奖周期的开始 |
+| prize_end | datetime | 发奖周期的结束 |
 | sys_status | smallint | 状态：0 正常；1 删除 |
-| sys_created | init | 创建时间 |
-| sys_updated | int | 修改时间 |
+| sys_created | datetime | 创建时间 |
+| sys_updated | datetime | 修改时间 |
 | sys_ip | varchar(50) | 操作人 IP |
 
 #### 优惠券 - code
@@ -42,8 +42,8 @@
 | id | int,pk,auto_increment | 主键 |
 | gift_id | int | 奖品 ID，关联 gift 表 |
 | code | varcahr(255) | 虚拟券编码 |
-| sys_created | int | 创建时间 |
-| sys_udpated | int | 更新时间 |
+| sys_created | datetime | 创建时间 |
+| sys_updated | datetime | 更新时间 |
 | sys_status | smallint | 状态：0 正常；1 作废；2 已发放 |
 
 #### 抽奖记录表 - result
@@ -55,9 +55,9 @@
 | gift_type | int | 奖品类型：同 gift.gtype |
 | uid | int | 用户 ID |
 | username | varchar(50) | 用户名 |
-| prize_cdoe | int | 抽奖编号（4 位的随机数） |
+| prize_code | int | 抽奖编号（4 位的随机数） |
 | gift_data | varchar(50) | 获奖信息 |
-| sys_created | int | 创建时间 |
+| sys_created | datetime | 创建时间 |
 | sys_ip | varchar(50) | 用户抽奖的 IP |
 | sys_status | smallint | 状态：0 正常；1 删除；2 作弊 |
 
@@ -66,12 +66,12 @@
 | --- | --- | --- |
 | id | int,pk,auto_increment | 主键 |
 | username | varchar(50) | 用户名 |
-| black_time | int | 黑名单限制到期时间 |
+| black_time | datetime | 黑名单限制到期时间 |
 | real_name | varchar(50) | 联系人 |
 | mobile | varchar(50) | 手机号 |
 | address | varchar(255) | 联系地址 |
-| sys_created | int | 创建时间 |
-| sys_udpated | int | 更新时间 |
+| sys_created | datetime | 创建时间 |
+| sys_updated | datetime | 更新时间 |
 | sys_ip | varchar(50) | 用户抽奖的 IP |
 
 #### IP 黑名单表 - black_ip
@@ -79,19 +79,19 @@
 | --- | --- | --- |
 | id | int,pk,auto_increment | 主键 |
 | ip | varchar(50) | IP 地址 |
-| black_time | int | 黑名单限制到期时间 |
-| sys_created | int | 创建时间 |
-| sys_udpated | int | 更新时间 |
+| black_time | datetime | 黑名单限制到期时间 |
+| sys_created | datetime | 创建时间 |
+| sys_updated | datetime | 更新时间 |
 
 #### 用户每日次数表 - user_day
 | 字段 | 属性 | 说明 |
 | --- | --- | --- |
 | id | int,pk,auto_increment | 主键 |
 | uid | int | 用户 ID |
-| day | int | 日期：如 20180725 |
+| day | datetime | 日期：如 20180725 |
 | num | int | 次数 |
-| sys_created | int | 创建时间 |
-| sys_udpated | int | 更新时间 |
+| sys_created | datetime | 创建时间 |
+| sys_updated | datetime | 更新时间 |
 
 ### 缓存设计
 
@@ -107,6 +107,25 @@
 - 用户黑名单：读多写少，可以按照 uid 散列
 - IP 黑名单：类似用户黑名单，可以按照 IP 散列
 - 用户每日参与次数：读写次数差异没有用户黑名单那么明显，缓存后的收益不明显
+
+### 系统目录
+
+|-- [_demo](./_demo) - 抽奖程序栗子目录  
+|-- [bootstrap](./bootstrap) - 程序启动相关  
+|-- [comm](./comm) - 公共代码  
+|-- [conf](./conf) - 配置相关  
+|-- [cron](./cron) - 定时任务  
+|-- [dao](./dao) - 数据库相关操作  
+|-- [services](./services) - 服务类相关  
+|-- [dataSource](./dataSource) - 数据源  
+|-- [thrift](./thrift) - RPC thrift 相关的  
+|-- [weh](./web) - 网站相关  
+|&nbsp;&nbsp;&nbsp;|-- [controllers](./web/controllers) - 控制器  
+|&nbsp;&nbsp;&nbsp;|-- [middleware](./web/middleware) - 中间件  
+|&nbsp;&nbsp;&nbsp;|-- [public](./web/public) - 公共文件  
+|&nbsp;&nbsp;&nbsp;|-- [routes](./web/routes) - 路由  
+|&nbsp;&nbsp;&nbsp;|-- [views](./web/views) - 模板  
+|&nbsp;&nbsp;&nbsp;|-- [viewModels](./web/viewModels) - 模板数据模型  
 
 未完待续。。。
 
