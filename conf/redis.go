@@ -1,12 +1,12 @@
 package conf
 
-type RdsConfig struct {
+type RedisConfig struct {
 	Host      string
 	Port      int
 	IsRunning bool
 }
 
-var RdsCacheList = []RdsConfig{
+var RedisCacheList = []RedisConfig{
 	{
 		Host:      "127.0.0.1",
 		Port:      6379,
@@ -14,4 +14,4 @@ var RdsCacheList = []RdsConfig{
 	},
 }
 
-var RdsCache = RdsCacheList[0]
+var RedisCache = RedisCacheList[0]

@@ -1,8 +1,8 @@
 package conf
 
-const DriverName = "mysql"
+const MysqlDriverName = "mysql"
 
-type DbConfig struct {
+type MysqlConfig struct {
 	Host      string
 	Port      int
 	User      string
@@ -11,7 +11,7 @@ type DbConfig struct {
 	IsRunning bool
 }
 
-var DbMasterList = []DbConfig{
+var MysqlMasterList = []MysqlConfig{
 	{
 		Host:      "127.0.0.1",
 		Port:      3306,
@@ -22,4 +22,4 @@ var DbMasterList = []DbConfig{
 	},
 }
 
-var DbMaster DbConfig = DbMasterList[0]
+var MysqlMaster = MysqlMasterList[0]
