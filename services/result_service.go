@@ -2,6 +2,7 @@ package services
 
 import (
 	"../dao"
+	"../dataSource"
 	"../models"
 )
 
@@ -20,7 +21,7 @@ type resultService struct {
 
 func NewResultService() ResultService {
 	return &resultService{
-		dao: dao.NewResultDao(nil),
+		dao: dao.NewResultDao(dataSource.NewMysqlMaster()),
 	}
 }
 

@@ -1,4 +1,4 @@
-package script
+package main
 
 import (
 	"fmt"
@@ -28,7 +28,7 @@ func main() {
 		if exist, _ := engine.IsTableExist(table); exist {
 			_ = engine.DropTables(table)
 		}
-		err := engine.CreateTables()
+		err := engine.CreateTables(table)
 		if err != nil {
 			fmt.Print(err)
 		}

@@ -97,7 +97,7 @@ func (this *Bootstrapper) SetupErrorHandler() {
 
 		ctx.ViewData("Err", err)
 		ctx.ViewData("Title", "Error")
-		ctx.View("shared/error.hmtl")
+		ctx.View("shared/error.html")
 	})
 }
 
@@ -108,4 +108,5 @@ func (this *Bootstrapper) Configure(cfgList ...Configurator) {
 }
 
 func (this *Bootstrapper) setupCron() {
+	// TODO
 }

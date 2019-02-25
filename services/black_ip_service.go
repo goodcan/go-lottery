@@ -2,6 +2,7 @@ package services
 
 import (
 	"../dao"
+	"../dataSource"
 	"../models"
 )
 
@@ -21,7 +22,7 @@ type blackIpService struct {
 
 func NewBlackIpService() BlackIpService {
 	return &blackIpService{
-		dao: dao.NewBlackIpDao(nil),
+		dao: dao.NewBlackIpDao(dataSource.NewMysqlMaster()),
 	}
 }
 

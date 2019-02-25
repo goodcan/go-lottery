@@ -2,6 +2,7 @@ package services
 
 import (
 	"../dao"
+	"../dataSource"
 	"../models"
 )
 
@@ -20,7 +21,7 @@ type giftService struct {
 
 func NewGiftService() GiftService {
 	return &giftService{
-		dao: dao.NewGiftDao(nil),
+		dao: dao.NewGiftDao(dataSource.NewMysqlMaster()),
 	}
 }
 

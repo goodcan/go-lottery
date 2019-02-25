@@ -2,6 +2,7 @@ package services
 
 import (
 	"../dao"
+	"../dataSource"
 	"../models"
 )
 
@@ -21,7 +22,7 @@ type userDayService struct {
 
 func NewUserDayService() UserDayService {
 	return &userDayService{
-		dao: dao.NewUserDayDao(nil),
+		dao: dao.NewUserDayDao(dataSource.NewMysqlMaster()),
 	}
 }
 
