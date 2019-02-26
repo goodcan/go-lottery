@@ -8,6 +8,7 @@ import (
 	"github.com/kataras/iris/middleware/logger"
 	"github.com/kataras/iris/middleware/recover"
 
+	"../comm"
 	"../conf"
 )
 
@@ -30,7 +31,7 @@ func New(appName, appOwner string, cfgList ...Configurator) *Bootstrapper {
 		Application:  iris.New(),
 		AppName:      appName,
 		AppOwner:     appOwner,
-		AppSpawnData: time.Now(),
+		AppSpawnData: comm.NowTime(),
 	}
 
 	for _, cfg := range cfgList {
@@ -41,11 +42,11 @@ func New(appName, appOwner string, cfgList ...Configurator) *Bootstrapper {
 }
 
 func (this *Bootstrapper) Bootstrap() *Bootstrapper {
-	this.SetupViews("./views")
+	//this.SetupViews("./views")
 	this.SetupErrorHandler()
 
 	this.Favicon(StaticAssets + Favicon)
-	this.StaticWeb(StaticAssets[1:len(StaticAssets)-1], StaticAssets)
+	//this.StaticWeb(StaticAssets[1:len(StaticAssets)-1], StaticAssets)
 
 	this.setupCron()
 
@@ -65,16 +66,17 @@ func (this *Bootstrapper) Listen(addr string, cfgList ...iris.Configurator) {
 
 func (this *Bootstrapper) SetupViews(viewDir string) {
 	htmlEngine := iris.HTML(viewDir, ".html").Layout("shared/layout.html")
+	//htmlEngine := iris.HTML(viewDir, ".html")
 
 	// production 环境设置 false
 	htmlEngine.Reload(true)
 
-	htmlEngine.AddFunc("FromUnixtTimeShort", func(t int) string {
+	htmlEngine.AddFunc("FromUnixTimeShort", func(t int) string {
 		dt := time.Unix(int64(t), int64(0))
 		return dt.Format(conf.SysTimeFormShort)
 	})
 
-	htmlEngine.AddFunc("FromUnixtTime", func(t int) string {
+	htmlEngine.AddFunc("FromUnixTime", func(t int) string {
 		dt := time.Unix(int64(t), int64(0))
 		return dt.Format(conf.SysTimeForm)
 	})

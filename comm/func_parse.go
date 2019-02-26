@@ -1,100 +1,15 @@
 package comm
 
 import (
-	"crypto/aes"
-	"crypto/cipher"
-	"encoding/base64"
 	"encoding/binary"
-	"errors"
 	"fmt"
-	"math/rand"
+	"github.com/kataras/iris"
 	"strconv"
 	"strings"
 	"time"
 
 	"../conf"
 )
-
-// 当前时间的时间戳
-func NowUnix() int {
-	return int(time.Now().In(conf.SysTimeLocation).Unix())
-}
-
-// 将 unix 时间戳格式化为 yyyymmdd HH:II:SS 格式字符串
-func FormatFromUnixTime(t int64) string {
-	if t > 0 {
-		return time.Unix(t, 0).Format(conf.SysTimeForm)
-	} else {
-		return time.Now().Format(conf.SysTimeForm)
-	}
-}
-
-// 将 unix 时间戳格式化为 yyyymmdd 格式字符串
-func FormatFromUnixTimeShort(t int64) string {
-	if t > 0 {
-		return time.Unix(t, 0).Format(conf.SysTimeFormShort)
-	} else {
-		return time.Now().Format(conf.SysTimeFormShort)
-	}
-}
-
-// 将字符串转成时间
-func ParseTime(s string) (time.Time, error) {
-	return time.ParseInLocation(conf.SysTimeForm, s, conf.SysTimeLocation)
-}
-
-// 得到一个随机数
-func RandInt(max int) int {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-
-	if max < 1 {
-		return r.Int()
-	} else {
-		return r.Intn(max)
-	}
-}
-
-// 对一个字符串进行加密
-func encrypt(key, text []byte) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-
-	if err != nil {
-		return nil, err
-	}
-
-	b := base64.StdEncoding.EncodeToString(text)
-	cipherText := make([]byte, aes.BlockSize+len(b))
-	iv := cipherText[:aes.BlockSize]
-	cfb := cipher.NewCFBEncrypter(block, iv)
-	cfb.XORKeyStream(cipherText[aes.BlockSize:], []byte(b))
-	return cipherText, nil
-
-}
-
-// 对一个字符串进行解密
-func decrypt(key, text []byte) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-
-	if err != nil {
-		return nil, err
-	}
-
-	if len(text) < aes.BlockSize {
-		return nil, errors.New("cipherText too short")
-	}
-
-	iv := text[:aes.BlockSize]
-	text = text[aes.BlockSize:]
-	cfb := cipher.NewCFBDecrypter(block, iv)
-	cfb.XORKeyStream(text, text)
-	data, err := base64.StdEncoding.DecodeString(string(text))
-
-	if err != nil {
-		return nil, err
-	}
-
-	return data, nil
-}
 
 // addSlashes 函数返回在预定义字符之前添加反斜杠的字符串
 // 预定义字符是：
@@ -158,7 +73,7 @@ func Ip4ToInt(ip string) int64 {
 
 // 得到当前时间到下一天零点的延时
 func NextDayDuration() time.Duration {
-	now := time.Now()
+	now := NowTime()
 	year, month, day := now.Add(time.Hour * 24).Date()
 	next := time.Date(year, month, day, 0, 0, 0, 0, conf.SysTimeLocation)
 	return next.Sub(now)
@@ -278,4 +193,15 @@ func GetStringFromStringMap(m map[string]string, key string, d string) string {
 	}
 
 	return GetString(data, d)
+}
+
+// 从 上下文获取，返回结果
+func FromCtxGetResult(ctx iris.Context) *conf.Result {
+	rs := ctx.Values().Get("result")
+	switch rs.(type) {
+	case *conf.Result:
+		return rs.(*conf.Result)
+	default:
+		return nil
+	}
 }

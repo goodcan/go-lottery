@@ -3,6 +3,7 @@ package main
 import (
 	"../bootstrap"
 	"./middleware/identity"
+	"./middleware/response"
 	"./routes"
 )
 
@@ -15,7 +16,7 @@ func newApp() *bootstrap.Bootstrapper {
 	)
 
 	app.Bootstrap()
-	app.Configure(identity.Configure, routes.Configure)
+	app.Configure(response.Configure, identity.Configure, routes.Configure)
 
 	return app
 }
