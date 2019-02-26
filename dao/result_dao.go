@@ -53,6 +53,28 @@ func (this *ResultDao) CountAll() int64 {
 	}
 }
 
+func (this *ResultDao) CountByGift(giftId int) int64 {
+	num, err := this.engine.
+		Where("gift_di=?", giftId).
+		Count(&models.Result{})
+	if err != nil {
+		return 0
+	} else {
+		return num
+	}
+}
+
+func (this *ResultDao) CountByUser(uid int) int64 {
+	num, err := this.engine.
+		Where("uid=?", uid).
+		Count(&models.Result{})
+	if err != nil {
+		return 0
+	} else {
+		return num
+	}
+}
+
 // 软删除
 func (this *ResultDao) Delete(id int) error {
 	data := &models.Result{Id: id, SysStatus: 1}
@@ -68,4 +90,38 @@ func (this *ResultDao) Update(data *models.Result, columns []string) error {
 func (this *ResultDao) Insert(data *models.Result) error {
 	_, err := this.engine.Insert(data)
 	return err
+}
+
+func (this *ResultDao) SearchByGift(giftId, page, size int) []models.Result {
+	dataList := make([]models.Result, 0)
+
+	err := this.engine.
+		Where("gift_id=?", giftId).
+		Limit(page, (page-1)*size).
+		Desc("id").
+		Find(&dataList)
+
+	if err != nil {
+		log.Println("Result_dao.GetAll error=", err)
+		return dataList
+	} else {
+		return dataList
+	}
+}
+
+func (this *ResultDao) SearchByUser(uid, page, size int) []models.Result {
+	dataList := make([]models.Result, 0)
+
+	err := this.engine.
+		Where("uid=?", uid).
+		Limit(page, (page-1)*size).
+		Desc("id").
+		Find(&dataList)
+
+	if err != nil {
+		log.Println("Result_dao.GetAll error=", err)
+		return dataList
+	} else {
+		return dataList
+	}
 }

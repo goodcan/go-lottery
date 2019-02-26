@@ -20,10 +20,13 @@ type AdminController struct {
 func (this *AdminController) Get() {
 	rs := comm.FromCtxGetResult(this.Ctx)
 
-	//uri := "http://" + this.Ctx.Host() + "/admin"
+	uri := "http://" + this.Ctx.Host() + "/admin"
+	uri_result := uri + "/result"
 
 	rs.Data = map[string]interface{}{
-		"title": "管理后台",
+		"title":               "管理后台",
+		"admin_result":        uri_result,
+		"admin_result_delete": uri_result + "/delete",
 	}
 
 	this.Ctx.Next()
