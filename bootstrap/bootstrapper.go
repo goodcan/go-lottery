@@ -97,9 +97,11 @@ func (this *Bootstrapper) SetupErrorHandler() {
 			return
 		}
 
-		ctx.ViewData("Err", err)
-		ctx.ViewData("Title", "Error")
-		ctx.View("shared/error.html")
+		ctx.JSON(err)
+
+		//ctx.ViewData("Err", err)
+		//ctx.ViewData("Title", "Error")
+		//ctx.View("shared/error.html")
 	})
 }
 

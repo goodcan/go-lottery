@@ -1,13 +1,15 @@
 package controllers
 
 import (
+	"fmt"
+	"strconv"
+
+	"github.com/kataras/iris"
+
 	"../../comm"
 	"../../conf"
 	"../../models"
 	"../../services"
-	"fmt"
-	"github.com/kataras/iris"
-	"strconv"
 )
 
 type IndexController struct {
@@ -29,6 +31,7 @@ func (this *IndexController) Get() {
 		"logout":        uri + "/logout",
 		"gifts":         uri + "/gifts",
 		"loginUserList": uri + "/online",
+		"admin":         uri + "/admin",
 	}
 
 	this.Ctx.Next()
