@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+
 	"github.com/kataras/iris"
 
 	"../../comm"
@@ -66,6 +67,7 @@ func (this *AdminResultController) Get() {
 
 	this.Ctx.Next()
 }
+
 func (this *AdminResultController) GetDelete() {
 	rs := comm.FromCtxGetResult(this.Ctx)
 	id, err := this.Ctx.URLParamInt("id")

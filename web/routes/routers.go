@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"github.com/kataras/iris/_examples/mvc/login/web/middleware"
 	"github.com/kataras/iris/mvc"
 
 	"../../bootstrap"
@@ -30,28 +29,31 @@ func Configure(b *bootstrap.Bootstrapper) {
 
 	index.Handle(new(controllers.IndexController))
 
-	admin := mvc.New(b.Party("/admin"))
-	admin.Router.Use(middleware.BasicAuth)
-	admin.Register(
-		userDayService,
-		codeService,
-		giftService,
-		resultService,
-		blackIpService,
-		blackUserService,
-	)
-
+	//admin := mvc.New(b.Party("/admin"))
+	//admin.Router.Use(middleware.BasicAuth)
+	//admin.Register(
+	//	userDayService,
+	//	codeService,
+	//	giftService,
+	//	resultService,
+	//	blackIpService,
+	//	blackUserService,
+	//)
+	admin := index.Party("/admin")
 	admin.Handle(new(controllers.AdminController))
 
 	adminGift := admin.Party("/gift")
-	adminGift.Register(giftService)
+	//adminGift.Register(giftService)
 	adminGift.Handle(new(controllers.AdminGiftController))
 
 	adminCode := admin.Party("/code")
-	adminCode.Register(codeService)
+	//adminCode.Register(codeService)
 	adminCode.Handle(new(controllers.AdminCodeController))
 
 	adminResult := admin.Party("/result")
-	adminResult.Register(resultService)
+	//adminResult.Register(resultService)
 	adminResult.Handle(new(controllers.AdminResultController))
+
+	adminBlackUser := admin.Party("/blackUser")
+	adminBlackUser.Handle(new(controllers.AdminBlackUserController))
 }
