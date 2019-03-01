@@ -14,10 +14,4 @@ var SignSecret = []byte("1234567890abcedfg")
 
 var CookieSecret = "hellolottery"
 
-type Result struct {
-	Code int         `json:"code"`
-	Msg  string      `json:"msg"`
-	Data interface{} `json:"data"`
-}
-
 var LoginUser = new(sync.Map)

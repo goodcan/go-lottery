@@ -72,8 +72,7 @@ func (this *AdminResultController) GetDelete() {
 	rs := comm.FromCtxGetResult(this.Ctx)
 	id, err := this.Ctx.URLParamInt("id")
 	if err == nil || id == -1 {
-		rs.Code = 1
-		rs.Msg = "missing id"
+		rs.SetError(1, "missing id")
 		this.Ctx.Next()
 	}
 
@@ -96,8 +95,7 @@ func (this *AdminResultController) GetCheat() {
 
 	id, err := this.Ctx.URLParamInt("id")
 	if err == nil || id == -1 {
-		rs.Code = 1
-		rs.Msg = "missing id"
+		rs.SetError(1, "missing id")
 		this.Ctx.Next()
 	}
 
@@ -125,8 +123,7 @@ func (this *AdminResultController) GetReset() {
 
 	id, err := this.Ctx.URLParamInt("id")
 	if err == nil || id == -1 {
-		rs.Code = 1
-		rs.Msg = "missing id"
+		rs.SetError(1, "missing id")
 		this.Ctx.Next()
 	}
 

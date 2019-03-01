@@ -13,13 +13,8 @@ import (
 )
 
 type IndexController struct {
-	Ctx              iris.Context
-	ServiceUserDay   services.UserDayService
-	ServiceCode      services.CodeService
-	ServiceGift      services.GiftService
-	ServiceResult    services.ResultService
-	ServiceBlackIp   services.BlackIpService
-	ServiceBlackUser services.BlackUserService
+	Ctx         iris.Context
+	ServiceGift services.GiftService
 }
 
 // http://localhost:8080/
@@ -75,7 +70,7 @@ func (this *IndexController) GetLogin() {
 
 	loginUser.Sign = comm.CreateLoginUserSign(&loginUser)
 
-	//comm.SetLoginUser(this.Ctx.ResponseWriter(), &loginUser)
+	comm.SetLoginUser(this.Ctx.ResponseWriter(), &loginUser)
 	//comm.Redirect(this.Ctx.ResponseWriter(),
 	//	"/public/index.html?from=login")
 
@@ -89,7 +84,7 @@ func (this *IndexController) GetLogin() {
 
 // http://locahost:8080/logout
 func (this *IndexController) GetLogout() {
-	//comm.SetLoginUser(this.Ctx.ResponseWriter(), nil)
+	comm.SetLoginUser(this.Ctx.ResponseWriter(), nil)
 	//comm.Redirect(this.Ctx.ResponseWriter(),
 	//	"/public/index.html?from=logout")
 
@@ -98,16 +93,14 @@ func (this *IndexController) GetLogout() {
 	uid := this.Ctx.URLParamIntDefault("uid", 0)
 
 	if uid == 0 {
-		rs.Code = 1
-		rs.Msg = "missing uid"
+		rs.SetError(1, "missing uid")
 		this.Ctx.Next()
 	}
 
 	if _, ok := conf.LoginUser.Load(uid); ok {
 		conf.LoginUser.Delete(uid)
 	} else {
-		rs.Code = 1
-		rs.Msg = "用户不存在"
+		rs.SetError(1, "用户不存在")
 	}
 
 	this.Ctx.Next()
