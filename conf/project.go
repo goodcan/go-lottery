@@ -5,13 +5,23 @@ import (
 	"time"
 )
 
-const SysTimeForm = "2006-01-02 15:04:05"
-const SysTimeFormShort = "2006-01-02"
+const (
+	SysTimeForm      = "2006-01-02 15:04:05"
+	SysTimeFormShort = "2006-01-02"
+	IpLimitMax       = 500
+)
 
-var SysTimeLocation, _ = time.LoadLocation("Asia/Shanghai")
+const (
+	GiftTypeVirtual   = iota // 虚拟币
+	GiftTypeCodeSame         // 虚拟币，相同的码
+	GiftTypeCodeDiff         // 虚拟券，不同的码
+	GiftTypeGiftSmall        // 实物小奖
+	GiftTypeGiftLarge        // 实物大奖
+)
 
-var SignSecret = []byte("1234567890abcedfg")
-
-var CookieSecret = "hellolottery"
-
-var LoginUser = new(sync.Map)
+var (
+	SysTimeLocation, _ = time.LoadLocation("Asia/Shanghai")
+	SignSecret         = []byte("1234567890abcedfg")
+	CookieSecret       = "hellolottery"
+	LoginUser          = new(sync.Map)
+)

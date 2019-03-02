@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"../../comm"
+	"../../conf"
 	"../../utils"
 )
 
@@ -27,8 +28,19 @@ func (this *IndexController) GetLucky() {
 	}
 
 	// 3 验证用户今日参与次数
+	ok = this.checkUserDay(loginUser.Uid)
+	if !ok {
+		rs.SetError(103, "今日的抽奖次数已用完，明天再来吧")
+		this.Ctx.Next()
+	}
 
 	// 4 验证 IP 今日的参与次数
+	ip := comm.ClientIp(this.Ctx.Request())
+	ipDayNum := utils.IncrIpLuckyNum(ip)
+	if ipDayNum > conf.IpLimitMax {
+		rs.SetError(104, "相同 IP 参与次数太多，明天再来吧")
+		this.Ctx.Next()
+	}
 
 	// 5 验证 IP 黑名单
 
