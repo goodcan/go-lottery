@@ -1,9 +1,11 @@
 package services
 
 import (
+	"../comm"
 	"../dao"
 	"../dataSource"
 	"../models"
+	"fmt"
 )
 
 type UserDayService interface {
@@ -14,6 +16,7 @@ type UserDayService interface {
 	Update(data *models.UserDay, columns []string) error
 	Insert(data *models.UserDay) error
 	GetByUid(uid int) *models.UserDay
+	GetUserToday(uid int) *models.UserDay
 }
 
 type userDayService struct {
@@ -52,4 +55,10 @@ func (this *userDayService) Insert(data *models.UserDay) error {
 
 func (this *userDayService) GetByUid(uid int) *models.UserDay {
 	return this.dao.GetByUid(uid)
+}
+
+func (this *userDayService) GetUserToday(uid int) *models.UserDay {
+	y, m, d := comm.NowTime().Date()
+	strDay := fmt.Sprintf("%d%02d%02d", y, m, d)
+	return this.dao.Search(uid, strDay)
 }

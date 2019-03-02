@@ -33,6 +33,11 @@ func FormatFromUnixTimeShort(t int64) string {
 	}
 }
 
+func StrShortToTime(s string) time.Time {
+	t, _ := time.Parse(conf.SysTimeFormShort, s)
+	return t.In(conf.SysTimeLocation)
+}
+
 // 将字符串转成时间
 func ParseTime(s string) (time.Time, error) {
 	return time.ParseInLocation(conf.SysTimeForm, s, conf.SysTimeLocation)

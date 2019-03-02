@@ -4,12 +4,31 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"time"
 
 	"../comm"
 	"../dataSource"
 )
 
 const ipFrameSize = 2
+
+func init() {
+	resetGroupIpList()
+}
+
+func resetGroupIpList() {
+	log.Println("ip_day_lucky.resetGroupIpList start")
+	redisDB := dataSource.RedisInstCache()
+	for i := 0; i < ipFrameSize; i++ {
+		key := fmt.Sprintf("day_ips_%d", i)
+		_, _ = redisDB.Do("DEL", key)
+	}
+	log.Println("ip_day_lucky.resetGroupIpList stop")
+
+	// IP 当天的统计数，零点的时候归零，设置定时器
+	duration := comm.NextDayDuration()
+	time.AfterFunc(duration, resetGroupIpList)
+}
 
 func IncrIpLuckyNum(strIp string) int64 {
 	ip := comm.Ip4ToInt(strIp)

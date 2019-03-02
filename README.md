@@ -88,7 +88,7 @@
 | --- | --- | --- |
 | id | int,pk,auto_increment | 主键 |
 | uid | int | 用户 ID |
-| day | datetime | 日期：如 20180725 |
+| day | varchar(8) | 日期：如 20180725 |
 | num | int | 次数 |
 | sys_created | datetime | 创建时间 |
 | sys_updated | datetime | 更新时间 |

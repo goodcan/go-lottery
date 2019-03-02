@@ -1,9 +1,8 @@
 package dao
 
 import (
-	"log"
-
 	"github.com/go-xorm/xorm"
+	"log"
 
 	"../models"
 )
@@ -78,6 +77,19 @@ func (this *UserDayDao) GetByUid(uid int) *models.UserDay {
 		Find(&dataList)
 
 	if err != nil || len(dataList) <= 1 {
+		return nil
+	} else {
+		return &dataList[0]
+	}
+}
+
+func (this *UserDayDao) Search(uid int, day string) *models.UserDay {
+	dataList := make([]models.UserDay, 0)
+	err := this.engine.Where("uid=?", uid).
+		Where("day=", day).
+		Limit(1).
+		Find(&dataList)
+	if err != nil || len(dataList) == 1 {
 		return nil
 	} else {
 		return &dataList[0]

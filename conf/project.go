@@ -9,6 +9,7 @@ const (
 	SysTimeForm      = "2006-01-02 15:04:05"
 	SysTimeFormShort = "2006-01-02"
 	IpLimitMax       = 500
+	UserPrizeNum     = 3000
 )
 
 const (
