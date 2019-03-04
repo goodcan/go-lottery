@@ -118,8 +118,9 @@
 |-- [dao](./dao) - 数据库相关操作  
 |-- [services](./services) - 数据服务类相关  
 |-- [dataSource](./dataSource) - 数据源  
-|-- [thrift](./thrift) - RPC thrift 相关的  
+|-- [utils](./utils) - 通用工具  
 |-- [script](./script) - 独立运行的脚本  
+|-- [thrift](./thrift) - RPC thrift 相关的  
 |-- [weh](./web) - 网站相关  
 |&nbsp;&nbsp;&nbsp;|-- [controllers](./web/controllers) - 控制器  
 |&nbsp;&nbsp;&nbsp;|-- [middleware](./web/middleware) - 中间件  
