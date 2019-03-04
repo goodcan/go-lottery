@@ -3,7 +3,9 @@ package controllers
 import (
 	"../../comm"
 	"../../conf"
+	"../../models"
 	"../../utils"
+	"fmt"
 )
 
 // GET http://localhost:8080/lucky
@@ -42,9 +44,31 @@ func (this *IndexController) GetLucky() {
 		this.Ctx.Next()
 	}
 
+	// 黑名单
+	limitBlack := false
+	if ipDayNum > conf.IpPrizeMax {
+		limitBlack = true
+	}
+
 	// 5 验证 IP 黑名单
+	var blackIpInfo *models.BlackIp
+	if !limitBlack {
+		blackIpInfo, ok = this.checkBlackIp(ip)
+		if !ok {
+			fmt.Println("黑名单中的 IP", ip, blackIpInfo.BlackTime)
+			limitBlack = true
+		}
+	}
 
 	// 6 验证用户黑名单
+	var userInfo *models.BlackUser
+	if !limitBlack {
+		userInfo, ok = this.checkBlackUser(loginUser.Uid)
+		if !ok {
+			fmt.Println("黑名单中的用户", loginUser.Uid, userInfo.BlackTime)
+			limitBlack = true
+		}
+	}
 
 	// 7 获得抽奖编码
 

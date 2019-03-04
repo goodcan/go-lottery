@@ -13,9 +13,11 @@ import (
 )
 
 type IndexController struct {
-	Ctx            iris.Context
-	ServiceGift    services.GiftService
-	ServiceUserDay services.UserDayService
+	Ctx              iris.Context
+	ServiceGift      services.GiftService
+	ServiceUserDay   services.UserDayService
+	ServiceBlackIp   services.BlackIpService
+	ServiceBlackUser services.BlackUserService
 }
 
 // http://localhost:8080/
