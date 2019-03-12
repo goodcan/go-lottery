@@ -101,6 +101,7 @@ func (this *IndexController) GetLogout() {
 	if uid == 0 {
 		rs.SetError(1, "missing uid")
 		this.Ctx.Next()
+		return
 	}
 
 	if _, ok := conf.LoginUser.Load(uid); ok {

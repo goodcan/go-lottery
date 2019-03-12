@@ -71,6 +71,7 @@ func (this *AdminBlackUserController) GetBlack() {
 	} else {
 		rs.SetError(1, "missing black user id")
 		this.Ctx.Next()
+		return
 	}
 
 	this.Ctx.Next()

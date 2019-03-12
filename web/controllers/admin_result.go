@@ -74,6 +74,7 @@ func (this *AdminResultController) GetDelete() {
 	if err == nil || id == -1 {
 		rs.SetError(1, "missing id")
 		this.Ctx.Next()
+		return
 	}
 
 	refer := this.Ctx.GetHeader("Referer")
@@ -97,6 +98,7 @@ func (this *AdminResultController) GetCheat() {
 	if err == nil || id == -1 {
 		rs.SetError(1, "missing id")
 		this.Ctx.Next()
+		return
 	}
 
 	_ = this.ServiceResult.Update(
@@ -125,6 +127,7 @@ func (this *AdminResultController) GetReset() {
 	if err == nil || id == -1 {
 		rs.SetError(1, "missing id")
 		this.Ctx.Next()
+		return
 	}
 
 	_ = this.ServiceResult.Update(

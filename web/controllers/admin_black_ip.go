@@ -71,6 +71,7 @@ func (this *AdminBlackIpController) GetBlack() {
 	} else {
 		rs.SetError(1, "missing black ip id")
 		this.Ctx.Next()
+		return
 	}
 
 	this.Ctx.Next()
