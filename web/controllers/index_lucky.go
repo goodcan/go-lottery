@@ -71,8 +71,16 @@ func (this *IndexController) GetLucky() {
 	}
 
 	// 7 获得抽奖编码
+	prizeCode := comm.RandInt(10000)
 
 	// 8 匹配奖品是否中奖
+	prizeGift := this.prize(prizeCode, limitBlack)
+
+	if prizeGift == nil || prizeGift.PrizeNum < 0 ||
+		(prizeGift.PrizeNum > 0 && prizeGift.LeftNum <= 0) {
+		rs.SetError(205, "很遗憾，没有中奖，请下次再试")
+		this.Ctx.Next()
+	}
 
 	// 9 有限制奖品发放
 

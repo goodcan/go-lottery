@@ -4,6 +4,8 @@ import (
 	"../dao"
 	"../dataSource"
 	"../models"
+	"strconv"
+	"strings"
 )
 
 type GiftService interface {
@@ -13,6 +15,7 @@ type GiftService interface {
 	Delete(id int) error
 	Update(data *models.Gift, columns []string) error
 	Insert(data *models.Gift) error
+	GetAllUse() []models.GiftPrize
 }
 
 type giftService struct {
@@ -47,4 +50,44 @@ func (this *giftService) Update(data *models.Gift, columns []string) error {
 
 func (this *giftService) Insert(data *models.Gift) error {
 	return this.dao.Insert(data)
+}
+
+func (this *giftService) GetAllUse() []models.GiftPrize {
+	dataList := make([]models.Gift, 0)
+	dataList = this.dao.GetAllUse()
+
+	if dataList != nil {
+		gifts := make([]models.GiftPrize, 0)
+
+		for _, gift := range dataList {
+			codes := strings.Split(gift.PrizeCode, "-")
+			if len(codes) == 2 {
+				a, e1 := strconv.Atoi(codes[0])
+				b, e2 := strconv.Atoi(codes[1])
+				if e1 == nil && e2 == nil && b >= a && a >= 0 && b <= 10000 {
+
+					data := models.GiftPrize{
+						Id:           gift.Id,
+						Title:        gift.Title,
+						PrizeNum:     gift.PrizeNum,
+						LeftNum:      gift.LeftNum,
+						PrizeCodeA:   a,
+						PrizeCodeB:   b,
+						Img:          gift.Img,
+						DisplayOrder: gift.DisplayOrder,
+						Gtype:        gift.Gtype,
+						Gdata:        gift.Gdata,
+					}
+
+					gifts = append(gifts, data)
+				}
+			}
+		}
+
+		return gifts
+
+	} else {
+		return []models.GiftPrize{}
+	}
+
 }

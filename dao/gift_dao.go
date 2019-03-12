@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-xorm/xorm"
 
+	"../comm"
 	"../models"
 )
 
@@ -69,4 +70,37 @@ func (this *GiftDao) Update(data *models.Gift, columns []string) error {
 func (this *GiftDao) Insert(data *models.Gift) error {
 	_, err := this.engine.Insert(data)
 	return err
+}
+
+// 获取到当前可以获取的奖品列表
+// 有奖品限定，状态正常，时间期间内
+// gtype 倒序，display_order 正序
+func (this *GiftDao) GetAllUse() []models.Gift {
+	now := comm.NowTime()
+	dataList := make([]models.Gift, 0)
+
+	err := this.engine.
+		Cols("id",
+			"title",
+			"prize_num",
+			"left_num",
+			"prize_code",
+			"prize_time",
+			"img",
+			"display_order",
+			"gtype",
+		).
+		Desc("gtype").
+		Asc("display_order").
+		Where("prize_num>=?", 0).
+		Where("sys_status=?", 0).
+		Where("time_begin<=?", now).
+		Where("time_end>=?", now).
+		Find(&dataList)
+
+	if err != nil {
+		log.Println("gift_dao.GetAllUse error=", err)
+	}
+
+	return dataList
 }
