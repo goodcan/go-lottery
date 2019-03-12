@@ -18,7 +18,8 @@ type IndexController struct {
 	ServiceUserDay   services.UserDayService
 	ServiceBlackIp   services.BlackIpService
 	ServiceBlackUser services.BlackUserService
-	serviceCode      services.CodeService
+	ServiceCode      services.CodeService
+	ServiceResult    services.ResultService
 }
 
 // http://localhost:8080/
@@ -31,6 +32,7 @@ func (this *IndexController) Get() {
 		"gifts":         uri + "/gifts",
 		"loginUserList": uri + "/online",
 		"admin":         uri + "/admin",
+		"lucky":         uri + "/lucky",
 	}
 
 	this.Ctx.Next()

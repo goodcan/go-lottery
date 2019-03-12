@@ -1,11 +1,13 @@
 package controllers
 
 import (
+	"fmt"
+	"log"
+
 	"../../comm"
 	"../../conf"
 	"../../models"
 	"../../utils"
-	"fmt"
 )
 
 // GET http://localhost:8080/lucky
@@ -95,7 +97,7 @@ func (this *IndexController) GetLucky() {
 
 	// 10 不用编码的优惠券的发放
 	if prizeGift.Gtype == conf.GiftTypeCodeDiff {
-		code := utils.PrizeCodeDiff(prizeGift.Id, this.serviceCode)
+		code := utils.PrizeCodeDiff(prizeGift.Id, this.ServiceCode)
 		if code == "" {
 			rs.SetError(208, not_prize_msg)
 			this.Ctx.Next()
@@ -104,7 +106,34 @@ func (this *IndexController) GetLucky() {
 	}
 
 	// 11 记录中奖记录
+	result := models.Result{
+		GiftId:     prizeGift.Id,
+		GiftName:   prizeGift.Title,
+		GiftType:   prizeGift.Gtype,
+		Uid:        loginUser.Uid,
+		Username:   loginUser.Username,
+		PrizeCode:  prizeCode,
+		GiftData:   prizeGift.Gdata,
+		SysCreated: comm.NowTime(),
+		SysStatus:  0,
+		SysIP:      ip,
+	}
+
+	err := this.ServiceResult.Insert(&result)
+
+	if err != nil {
+		log.Println("index_lucky.GetLucky ServiceResult.Insert",
+			result, "error=", err)
+		rs.SetError(209, not_prize_msg)
+		this.Ctx.Next()
+	}
+
+	// 如果是实物大奖需要将用户 IP 设置成黑名单一段时间
+	if prizeGift.Gtype == conf.GiftTypeGiftLarge {
+		this.prizeLarge(ip, loginUser, userInfo, blackIpInfo)
+	}
 
 	// 12 返回抽奖结果
+	rs.Data = prizeGift
 	this.Ctx.Next()
 }
