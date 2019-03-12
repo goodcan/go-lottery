@@ -73,18 +73,35 @@ func (this *IndexController) GetLucky() {
 	// 7 获得抽奖编码
 	prizeCode := comm.RandInt(10000)
 
+	not_prize_msg := "很遗憾，没有中奖，请下次再试"
+
 	// 8 匹配奖品是否中奖
 	prizeGift := this.prize(prizeCode, limitBlack)
 
 	if prizeGift == nil || prizeGift.PrizeNum < 0 ||
 		(prizeGift.PrizeNum > 0 && prizeGift.LeftNum <= 0) {
-		rs.SetError(205, "很遗憾，没有中奖，请下次再试")
+		rs.SetError(205, not_prize_msg)
 		this.Ctx.Next()
 	}
 
 	// 9 有限制奖品发放
+	if prizeGift.PrizeNum > 0 {
+		ok = utils.PrizeGift(prizeGift.Id, this.ServiceGift)
+		if !ok {
+			rs.SetError(207, not_prize_msg)
+			this.Ctx.Next()
+		}
+	}
 
 	// 10 不用编码的优惠券的发放
+	if prizeGift.Gtype == conf.GiftTypeCodeDiff {
+		code := utils.PrizeCodeDiff(prizeGift.Id, this.serviceCode)
+		if code == "" {
+			rs.SetError(208, not_prize_msg)
+			this.Ctx.Next()
+		}
+		prizeGift.Gdata = code
+	}
 
 	// 11 记录中奖记录
 

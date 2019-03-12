@@ -18,6 +18,7 @@ type IndexController struct {
 	ServiceUserDay   services.UserDayService
 	ServiceBlackIp   services.BlackIpService
 	ServiceBlackUser services.BlackUserService
+	serviceCode      services.CodeService
 }
 
 // http://localhost:8080/

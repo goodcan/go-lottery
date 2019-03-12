@@ -69,3 +69,30 @@ func (this *CodeDao) Insert(data *models.Code) error {
 	_, err := this.engine.Insert(data)
 	return err
 }
+
+// 根据唯一的 code 来更新
+func (this *CodeDao) UpdateByCode(data *models.Code, columns []string) error {
+	_, err := this.engine.
+		Where("code=?", data.Code).
+		MustCols(columns...).
+		Update(data)
+	return err
+}
+
+func (this *CodeDao) NextUsingCode(giftId, codeId int) *models.Code {
+	dataList := make([]models.Code, 0)
+	err := this.engine.
+		Where("gift_id+?", giftId).
+		Where("sys_status=?", 0).
+		Where("id>?", codeId).
+		Asc("id").
+		Limit(1).
+		Find(&dataList)
+
+	if err != nil || len(dataList) == 0 {
+		return nil
+	} else {
+		return &dataList[0]
+	}
+
+}

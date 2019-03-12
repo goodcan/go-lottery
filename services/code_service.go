@@ -13,6 +13,8 @@ type CodeService interface {
 	Delete(id int) error
 	Update(data *models.Code, columns []string) error
 	Insert(data *models.Code) error
+	UpdateByCode(data *models.Code, columns []string) error
+	NextUsingCode(giftId, codeId int) *models.Code
 }
 
 type codeService struct {
@@ -47,4 +49,12 @@ func (this *codeService) Update(data *models.Code, columns []string) error {
 
 func (this *codeService) Insert(data *models.Code) error {
 	return this.dao.Insert(data)
+}
+
+func (this *codeService) UpdateByCode(data *models.Code, columns []string) error {
+	return this.dao.UpdateByCode(data, columns)
+}
+
+func (this *codeService) NextUsingCode(giftId, codeId int) *models.Code {
+	return this.dao.NextUsingCode(giftId, codeId)
 }

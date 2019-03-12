@@ -104,3 +104,22 @@ func (this *GiftDao) GetAllUse() []models.Gift {
 
 	return dataList
 }
+
+func (this *GiftDao) DecrLeftNum(id, num int) (int64, error) {
+	r, err := this.engine.
+		Id(id).
+		Decr("left_num", num).
+		Where("left_num>=?", num).
+		Update(&models.Gift{Id: id})
+
+	return r, err
+}
+
+func (this *GiftDao) IncrLeftNum(id, num int) (int64, error) {
+	r, err := this.engine.
+		Id(id).
+		Incr("left_num", num).
+		Update(&models.Gift{Id: id})
+
+	return r, err
+}
