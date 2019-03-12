@@ -20,6 +20,7 @@ func (this *IndexController) GetLucky() {
 	if loginUser == nil || loginUser.Uid < 1 {
 		rs.SetError(101, "请先登录，再来抽奖")
 		this.Ctx.Next()
+		return
 	}
 
 	// 2 用户抽奖分布式锁定
@@ -27,6 +28,7 @@ func (this *IndexController) GetLucky() {
 	if !ok {
 		rs.SetError(102, "正在抽奖，请稍后重试")
 		this.Ctx.Next()
+		return
 	} else {
 		defer utils.UnLockLucky(loginUser.Uid)
 	}
@@ -36,6 +38,7 @@ func (this *IndexController) GetLucky() {
 	if !ok {
 		rs.SetError(103, "今日的抽奖次数已用完，明天再来吧")
 		this.Ctx.Next()
+		return
 	}
 
 	// 4 验证 IP 今日的参与次数
@@ -44,6 +47,7 @@ func (this *IndexController) GetLucky() {
 	if ipDayNum > conf.IpLimitMax {
 		rs.SetError(104, "相同 IP 参与次数太多，明天再来吧")
 		this.Ctx.Next()
+		return
 	}
 
 	// 黑名单
@@ -84,6 +88,7 @@ func (this *IndexController) GetLucky() {
 		(prizeGift.PrizeNum > 0 && prizeGift.LeftNum <= 0) {
 		rs.SetError(205, not_prize_msg)
 		this.Ctx.Next()
+		return
 	}
 
 	// 9 有限制奖品发放
@@ -92,6 +97,7 @@ func (this *IndexController) GetLucky() {
 		if !ok {
 			rs.SetError(207, not_prize_msg)
 			this.Ctx.Next()
+			return
 		}
 	}
 
@@ -101,6 +107,7 @@ func (this *IndexController) GetLucky() {
 		if code == "" {
 			rs.SetError(208, not_prize_msg)
 			this.Ctx.Next()
+			return
 		}
 		prizeGift.Gdata = code
 	}
@@ -126,6 +133,7 @@ func (this *IndexController) GetLucky() {
 			result, "error=", err)
 		rs.SetError(209, not_prize_msg)
 		this.Ctx.Next()
+		return
 	}
 
 	// 如果是实物大奖需要将用户 IP 设置成黑名单一段时间
