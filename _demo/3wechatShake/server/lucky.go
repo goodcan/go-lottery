@@ -40,9 +40,9 @@ func sendCoupon(g *gift) (bool, string) {
 	}
 }
 
-var sendCouponFix func(g *gift) (bool, string) = sendCoin
-var sendRealSmall func(g *gift) (bool, string) = sendCoin
-var sendRealLarge func(g *gift) (bool, string) = sendCoin
+var sendCouponFix = sendCoin
+var sendRealSmall = sendCoin
+var sendRealLarge = sendCoin
 
 // 记录用户获奖信息
 func saveLuckyData(code int32, sendData string, g *gift) {
