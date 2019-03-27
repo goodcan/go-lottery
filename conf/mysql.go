@@ -16,8 +16,8 @@ var MysqlMasterList = []MysqlConfig{
 		Host:      "127.0.0.1",
 		Port:      3306,
 		User:      "root",
-		Pwd:       "peipeiyun071",
-		Database:  "go-lottery",
+		Pwd:       "caojiacan",
+		Database:  "goLottery",
 		IsRunning: true,
 	},
 }
