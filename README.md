@@ -13,7 +13,7 @@
 - [大转盘](./_demo/6wheel)
 
 ### govendor 包管理工具
-#### 工具包安装
+#### 安装
 
 ```
 go get -u -v github.com/kardianos/govendor
@@ -26,7 +26,7 @@ go get -u -v github.com/kardianos/govendor
 govendor init
 ```
 
-#### 导入项目使用的包
+#### 导入项目依赖的包
 
 ```
 # 将项目使用的包导入 vendor 文件夹
@@ -34,7 +34,7 @@ govendor init
 govendor add +external
 ```
 
-#### 安装依赖包
+#### 本地同步依赖包
 
 ```
 # 重新安装依赖包到 vendor 文件夹
