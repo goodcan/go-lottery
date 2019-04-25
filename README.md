@@ -12,7 +12,7 @@
 - [微博抢红包](./_demo/5weiboRedPacket)
 - [大转盘](./_demo/6wheel)
 
-### govendor 管理工具
+### govendor 包管理工具
 #### 工具包安装
 
 ```
