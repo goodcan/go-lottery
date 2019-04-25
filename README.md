@@ -12,6 +12,35 @@
 - [微博抢红包](./_demo/5weiboRedPacket)
 - [大转盘](./_demo/6wheel)
 
+### govendor 管理工具
+#### 工具包安装
+
+```
+go get -u -v github.com/kardianos/govendor
+```
+
+#### 初始化
+
+```
+# 在当前目录生成 vendor 文件夹
+govendor init
+```
+
+#### 导入项目使用的包
+
+```
+# 将项目使用的包导入 vendor 文件夹
+# 缩写： govendor add +e
+govendor add +external
+```
+
+#### 安装依赖包
+
+```
+# 重新安装依赖包到 vendor 文件夹
+govendor sync
+```
+    
 ### 数据设计 - MySQL
 #### 奖品表 - gift
 | 字段 | 属性 | 说明 |

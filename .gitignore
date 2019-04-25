@@ -1,2 +1,5 @@
 .idea
 log
+
+/vendor/*
+!/vendor/vendor.json
