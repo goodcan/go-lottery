@@ -6,8 +6,8 @@ import (
 	"math"
 	"time"
 
-	"../comm"
-	"../dataSource"
+	"go-lottery/comm"
+	"go-lottery/dataSource"
 )
 
 const ipFrameSize = 2

@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/kataras/iris"
 
-	"../../services"
+	"go-lottery/services"
 )
 
 type AdminGiftController struct {

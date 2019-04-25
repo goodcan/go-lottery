@@ -3,8 +3,8 @@ package utils
 import (
 	"log"
 
-	"../comm"
-	"../services"
+	"go-lottery/comm"
+	"go-lottery/services"
 )
 
 func PrizeGift(id int, giftService services.GiftService) bool {

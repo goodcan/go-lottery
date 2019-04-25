@@ -1,10 +1,10 @@
 package main
 
 import (
-	"../bootstrap"
-	"./middleware/identity"
-	"./middleware/response"
-	"./routes"
+	"go-lottery/bootstrap"
+	"go-lottery/web/middleware/identity"
+	"go-lottery/web/middleware/response"
+	"go-lottery/web/routes"
 )
 
 func newApp() *bootstrap.Bootstrapper {

@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-xorm/xorm"
 
-	"../comm"
-	"../models"
+	"go-lottery/comm"
+	"go-lottery/models"
 )
 
 type GiftDao struct {

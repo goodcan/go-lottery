@@ -3,12 +3,13 @@ package comm
 import (
 	"encoding/binary"
 	"fmt"
-	"github.com/kataras/iris"
 	"strconv"
 	"strings"
 	"time"
 
-	"../conf"
+	"github.com/kataras/iris"
+
+	"go-lottery/conf"
 )
 
 // addSlashes 函数返回在预定义字符之前添加反斜杠的字符串

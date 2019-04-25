@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"../../comm"
-	"../../conf"
-	"../../models"
-	"../../utils"
+	"go-lottery/comm"
+	"go-lottery/conf"
+	"go-lottery/models"
+	"go-lottery/utils"
 )
 
 // GET http://localhost:8080/lucky

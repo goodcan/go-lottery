@@ -3,15 +3,16 @@ package comm
 import (
 	"crypto/md5"
 	"fmt"
-	"github.com/kataras/iris"
 	"log"
 	"net"
 	"net/http"
 	"net/url"
 	"strconv"
 
-	"../conf"
-	"../models"
+	"github.com/kataras/iris"
+
+	"go-lottery/conf"
+	"go-lottery/models"
 )
 
 func ClientIp(request *http.Request) string {

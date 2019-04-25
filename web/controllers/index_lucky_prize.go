@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"../../conf"
-	"../../models"
+	"go-lottery/conf"
+	"go-lottery/models"
 )
 
 func (this *IndexController) prize(prizeCode int, limitBlack bool) *models.GiftPrize {

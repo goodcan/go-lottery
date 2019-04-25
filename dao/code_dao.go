@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-xorm/xorm"
 
-	"../models"
+	"go-lottery/models"
 )
 
 type CodeDao struct {

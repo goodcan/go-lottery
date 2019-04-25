@@ -1,9 +1,9 @@
 package services
 
 import (
-	"../dao"
-	"../dataSource"
-	"../models"
+	"go-lottery/dao"
+	"go-lottery/dataSource"
+	"go-lottery/models"
 )
 
 type BlackIpService interface {

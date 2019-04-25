@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"../../comm"
-	"../../conf"
-	"../../models"
+	"go-lottery/comm"
+	"go-lottery/conf"
+	"go-lottery/models"
 )
 
 func (this *IndexController) checkUserDay(uid int) bool {

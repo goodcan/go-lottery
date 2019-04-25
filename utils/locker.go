@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	"../dataSource"
+	"go-lottery/dataSource"
 )
 
 func getLuckyLockKye(uid int) string {

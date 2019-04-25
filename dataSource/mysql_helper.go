@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 
-	"../conf"
+	"go-lottery/conf"
 )
 
 var MysqlMasterInst *xorm.Engine

@@ -1,11 +1,12 @@
 package services
 
 import (
-	"../dao"
-	"../dataSource"
-	"../models"
 	"strconv"
 	"strings"
+
+	"go-lottery/dao"
+	"go-lottery/dataSource"
+	"go-lottery/models"
 )
 
 type GiftService interface {

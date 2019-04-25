@@ -8,8 +8,8 @@ import (
 	"github.com/kataras/iris/middleware/logger"
 	"github.com/kataras/iris/middleware/recover"
 
-	"../comm"
-	"../conf"
+	"go-lottery/comm"
+	"go-lottery/conf"
 )
 
 const (

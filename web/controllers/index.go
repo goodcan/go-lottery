@@ -6,10 +6,10 @@ import (
 
 	"github.com/kataras/iris"
 
-	"../../comm"
-	"../../conf"
-	"../../models"
-	"../../services"
+	"go-lottery/comm"
+	"go-lottery/conf"
+	"go-lottery/models"
+	"go-lottery/services"
 )
 
 type IndexController struct {

@@ -1,7 +1,7 @@
 package identity
 
 import (
-	"../../../bootstrap"
+	"go-lottery/bootstrap"
 )
 
 func Configure(b *bootstrap.Bootstrapper) {}

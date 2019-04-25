@@ -3,7 +3,7 @@ package comm
 import (
 	"time"
 
-	"../conf"
+	"go-lottery/conf"
 )
 
 // 当前时间的时间戳

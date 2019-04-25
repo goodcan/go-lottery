@@ -1,11 +1,12 @@
 package services
 
 import (
-	"../comm"
-	"../dao"
-	"../dataSource"
-	"../models"
 	"fmt"
+
+	"go-lottery/comm"
+	"go-lottery/dao"
+	"go-lottery/dataSource"
+	"go-lottery/models"
 )
 
 type UserDayService interface {

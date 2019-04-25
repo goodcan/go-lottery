@@ -1,10 +1,11 @@
 package dao
 
 import (
-	"github.com/go-xorm/xorm"
 	"log"
 
-	"../models"
+	"github.com/go-xorm/xorm"
+
+	"go-lottery/models"
 )
 
 type UserDayDao struct {

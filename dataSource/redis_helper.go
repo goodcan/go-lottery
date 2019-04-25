@@ -8,7 +8,7 @@ import (
 
 	"github.com/gomodule/redigo/redis"
 
-	"../conf"
+	"go-lottery/conf"
 )
 
 var redisInst *RedisConn

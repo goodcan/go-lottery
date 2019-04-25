@@ -3,9 +3,9 @@ package routes
 import (
 	"github.com/kataras/iris/mvc"
 
-	"../../bootstrap"
-	"../../services"
-	"../controllers"
+	"go-lottery/bootstrap"
+	"go-lottery/services"
+	"go-lottery/web/controllers"
 )
 
 func Configure(b *bootstrap.Bootstrapper) {
