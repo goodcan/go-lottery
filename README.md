@@ -15,20 +15,20 @@
 ### govendor 包管理工具
 #### 安装
 
-```
+```shell
 go get -u -v github.com/kardianos/govendor
 ```
 
 #### 初始化
 
-```
+```shell
 # 在当前目录生成 vendor 文件夹
 govendor init
 ```
 
 #### 导入项目依赖包
 
-```
+```shell
 # 将项目使用的包导入 vendor 文件夹
 # 缩写： govendor add +e
 govendor add +external
@@ -36,7 +36,7 @@ govendor add +external
 
 #### 本地同步依赖包
 
-```
+```shell
 # 重新安装依赖包到 vendor 文件夹
 govendor sync
 ```
@@ -139,24 +139,27 @@ govendor sync
 
 ### 系统目录
 
-|-- [_demo](./_demo) - 抽奖程序栗子目录  
-|-- [bootstrap](./bootstrap) - 程序启动相关  
-|-- [comm](./comm) - 公共代码  
-|-- [conf](./conf) - 配置相关  
-|-- [cron](./cron) - 定时任务  
-|-- [dao](./dao) - 数据库相关操作  
-|-- [services](./services) - 数据服务类相关  
-|-- [dataSource](./dataSource) - 数据源  
-|-- [utils](./utils) - 通用工具  
-|-- [script](./script) - 独立运行的脚本  
-|-- [thrift](./thrift) - RPC thrift 相关的  
-|-- [weh](./web) - 网站相关  
-|&nbsp;&nbsp;&nbsp;|-- [controllers](./web/controllers) - 控制器  
-|&nbsp;&nbsp;&nbsp;|-- [middleware](./web/middleware) - 中间件  
-|&nbsp;&nbsp;&nbsp;|-- [public](./web/public) - 静态文件  
-|&nbsp;&nbsp;&nbsp;|-- [routes](./web/routes) - 路由  
-|&nbsp;&nbsp;&nbsp;|-- [views](./web/views) - 模板  
-|&nbsp;&nbsp;&nbsp;|-- [viewModels](./web/viewModels) - 模板数据模型  
+```text
+├── [_demo](./_demo) - 抽奖程序栗子目录
+├── [bootstrap](./bootstrap) - 程序启动相关
+├── [comm](./comm) - 公共代码
+├── [conf](./conf) - 配置相关  
+├── [cron](./cron) - 定时任务  
+├── [dao](./dao) - 数据库相关操作
+├── [services](./services) - 数据服务类相关
+├── [dataSource](./dataSource) - 数据源
+├── [utils](./utils) - 通用工具
+├── [script](./script) - 独立运行的脚本
+├── [thrift](./thrift) - RPC thrift 相关的
+├── [vendor](./vendor) - 项目依赖包 
+└── [weh](./web) - 网站相关
+    ├── [controllers](./web/controllers) - 控制器
+    ├── [middleware](./web/middleware) - 中间件
+    ├── [public](./web/public) - 静态文件
+    ├── [routes](./web/routes) - 路由
+    ├── [views](./web/views) - 模板
+    └── [viewModels](./web/viewModels) - 模板数据模型
+```
 
 未完待续。。。
 
