@@ -26,7 +26,7 @@ go get -u -v github.com/kardianos/govendor
 govendor init
 ```
 
-#### 导入项目依赖的包
+#### 导入项目依赖包
 
 ```
 # 将项目使用的包导入 vendor 文件夹
