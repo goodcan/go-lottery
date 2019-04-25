@@ -159,6 +159,10 @@ govendor sync
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [views](./web/views) - 模板  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [viewModels](./web/viewModels) - 模板数据模型  
 
+### commit 规范
+- [dev] + 新增的内容
+- [upd] + 更新的内容
+
 未完待续。。。
 
 如有错误，务必指出，谢谢 ^.^ !
