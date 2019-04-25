@@ -139,27 +139,25 @@ govendor sync
 
 ### 系统目录
 
-```text
-├── [_demo](./_demo) - 抽奖程序栗子目录
-├── [bootstrap](./bootstrap) - 程序启动相关
-├── [comm](./comm) - 公共代码
+├── [_demo](./_demo) - 抽奖程序栗子目录  
+├── [bootstrap](./bootstrap) - 程序启动相关  
+├── [comm](./comm) - 公共代码  
 ├── [conf](./conf) - 配置相关  
 ├── [cron](./cron) - 定时任务  
-├── [dao](./dao) - 数据库相关操作
-├── [services](./services) - 数据服务类相关
-├── [dataSource](./dataSource) - 数据源
-├── [utils](./utils) - 通用工具
-├── [script](./script) - 独立运行的脚本
-├── [thrift](./thrift) - RPC thrift 相关的
-├── [vendor](./vendor) - 项目依赖包 
-└── [weh](./web) - 网站相关
-    ├── [controllers](./web/controllers) - 控制器
-    ├── [middleware](./web/middleware) - 中间件
-    ├── [public](./web/public) - 静态文件
-    ├── [routes](./web/routes) - 路由
-    ├── [views](./web/views) - 模板
-    └── [viewModels](./web/viewModels) - 模板数据模型
-```
+├── [dao](./dao) - 数据库相关操作  
+├── [services](./services) - 数据服务类相关  
+├── [dataSource](./dataSource) - 数据源  
+├── [utils](./utils) - 通用工具  
+├── [script](./script) - 独立运行的脚本  
+├── [thrift](./thrift) - RPC thrift 相关的  
+├── [vendor](./vendor) - 项目依赖包   
+└── [weh](./web) - 网站相关  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [controllers](./web/controllers) - 控制器  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [middleware](./web/middleware) - 中间件  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [public](./web/public) - 静态文件  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [routes](./web/routes) - 路由  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [views](./web/views) - 模板  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [viewModels](./web/viewModels) - 模板数据模型  
 
 未完待续。。。
 
