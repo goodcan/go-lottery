@@ -12,7 +12,7 @@ import (
 func main() {
 	engine, _ := xorm.NewEngine(
 		"mysql",
-		"root:peipeiyun071@tcp(127.0.0.1:3306)/go-lottery",
+		"root:caojiacan@tcp(127.0.0.1:3306)/goLottery",
 	)
 
 	tables := []interface{}{
