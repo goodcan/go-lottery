@@ -1,7 +1,7 @@
 ## 抽奖活动服务端 - Golang
 
 ### TODO
-- [ ] 使用 go module
+- [x] 使用 go module
 - [ ] 各抽奖例子不再依赖 iris，独立成模块
 
 ### 6 种抽奖小栗子
