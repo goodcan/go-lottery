@@ -1,6 +1,6 @@
 package main
 
-import "./server"
+import "go-lottery/_demo/1annualMeeting/server"
 
 func main() {
 

@@ -1,6 +1,6 @@
 package main
 
-import "./server"
+import "go-lottery/_demo/5weiboRedPacket/server"
 
 func main() {
 	server.Run()
